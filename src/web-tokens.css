@@ -227,97 +227,57 @@
   .tw-hero-collage { height: auto; max-width: 420px; margin: 0 auto; }
 }
 
-/* Hero process: driver + ref → result, collage layout */
+/* Hero process: driver + ref → result, clean inline equation */
 .tw-hero-process {
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   width: 100%;
   height: 100%;
 }
 .tw-hero-card {
-  position: absolute;
+  flex: 0 0 auto;
+  position: relative;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 18px;
   background: var(--surface-2);
-  box-shadow: 0 14px 36px rgba(40,30,20,0.13), 0 1px 3px rgba(40,30,20,0.06);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  animation: tw-rise 0.55s both;
+  box-shadow: 0 12px 30px rgba(40,30,20,0.10), 0 1px 2px rgba(40,30,20,0.04);
+  animation: tw-rise 0.5s both;
 }
-.tw-hero-card:hover {
-  transform: scale(1.025) rotate(var(--rot, 0deg)) !important;
-  z-index: 10;
-}
-.tw-hero-card--driver {
-  --rot: -5deg;
-  top: 0;
-  left: 0;
-  width: 32%;
-  aspect-ratio: 9 / 16;
-  transform: rotate(var(--rot));
-  z-index: 1;
-  animation-delay: 0.05s;
-}
-.tw-hero-card--ref {
-  --rot: 4deg;
-  bottom: 0;
-  left: 3%;
-  width: 40%;
-  aspect-ratio: 4 / 5;
-  transform: rotate(var(--rot));
-  z-index: 2;
-  animation-delay: 0.18s;
-}
+.tw-hero-card--driver { width: 20%; aspect-ratio: 9 / 16; animation-delay: 0.05s; }
+.tw-hero-card--ref    { width: 28%; aspect-ratio: 4 / 5; animation-delay: 0.18s; }
 .tw-hero-card--result {
-  --rot: 2deg;
-  top: 22px;
-  right: 0;
-  width: 50%;
+  width: 40%;
   aspect-ratio: 9 / 16;
-  transform: rotate(var(--rot));
-  z-index: 3;
-  border-radius: 26px;
+  border-radius: 22px;
   box-shadow:
-    0 24px 56px rgba(217,102,102,0.22),
+    0 22px 52px rgba(217,102,102,0.22),
     0 0 0 1px var(--accent-soft),
     0 1px 3px rgba(40,30,20,0.08);
   animation-delay: 0.32s;
 }
 
-/* Process operators: + between driver/ref, → between cluster and result */
+/* Inline equation operators */
 .tw-hero-op {
-  position: absolute;
-  z-index: 5;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-  background: var(--bg);
-  border-radius: 999px;
-  box-shadow: 0 6px 18px rgba(40,30,20,0.10);
   color: var(--accent);
   font-family: var(--font-display);
   font-weight: 700;
+  pointer-events: none;
 }
-.tw-hero-op--plus {
-  top: 49%;
-  left: 24%;
-  width: 38px;
-  height: 38px;
-  font-size: 24px;
-  line-height: 1;
-  transform: translate(-50%, -50%) rotate(-4deg);
-  border: 1.5px solid var(--accent-soft);
-}
+.tw-hero-op--plus { width: 32px; font-size: 30px; line-height: 1; }
 .tw-hero-op--arrow {
-  top: 50%;
-  left: 47%;
-  padding: 8px 12px;
-  transform: translate(-50%, -50%);
-  border: 1.5px solid var(--accent-soft);
+  width: 44px;
   animation: tw-arrow-pulse 2.4s ease-in-out infinite;
 }
+.tw-hero-op svg { display: block; }
 @keyframes tw-arrow-pulse {
-  0%, 100% { transform: translate(-50%, -50%); }
-  50%      { transform: translate(calc(-50% + 4px), -50%); }
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(4px); }
 }
 .tw-hero-img {
   width: 100%; height: 100%;
@@ -361,31 +321,17 @@
 
 @media (max-width: 900px) {
   .tw-hero-process {
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    grid-template-rows: auto auto;
-    gap: 12px;
-    padding: 6px 0;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 4px 0;
   }
-  .tw-hero-card {
-    position: relative;
-    transform: none !important;
-    width: 100% !important;
-    top: auto; left: auto; right: auto; bottom: auto;
-    animation: none;
-  }
-  .tw-hero-card:hover { transform: none !important; }
-  .tw-hero-card--driver { grid-column: 1; grid-row: 1; aspect-ratio: 9 / 16; align-self: end; }
-  .tw-hero-card--ref    { grid-column: 2; grid-row: 1; aspect-ratio: 4 / 5; align-self: end; }
-  .tw-hero-card--result {
-    grid-column: 1 / -1; grid-row: 2;
-    aspect-ratio: 9 / 16;
-    width: 240px !important;
-    margin: 4px auto 0;
-  }
+  .tw-hero-card--driver { width: 28%; }
+  .tw-hero-card--ref    { width: 36%; }
+  .tw-hero-card--result { width: 100%; max-width: 260px; margin: 12px auto 0; }
+  .tw-hero-op--plus  { width: 22px; font-size: 22px; }
+  .tw-hero-op--arrow { width: 100%; flex-basis: 100%; margin: 6px 0 -2px; transform: rotate(90deg); }
+  .tw-hero-op--arrow svg { width: 36px; }
   .tw-hero-tag { font-size: 10px; padding: 3px 9px; bottom: 10px; left: 10px; letter-spacing: 0.04em; }
-  .tw-hero-op { display: none; }
 }
 
 .tw-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }

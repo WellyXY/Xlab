@@ -230,9 +230,9 @@ function HeroProcess() {
       </div>
 
       <span className="tw-hero-op tw-hero-op--arrow" aria-hidden>
-        <svg width="36" height="14" viewBox="0 0 36 14" fill="none">
-          <path d="M2 7 H 28 M22 2 L 30 7 L 22 12"
-            stroke="currentColor" strokeWidth="2.4"
+        <svg width="44" height="16" viewBox="0 0 44 16" fill="none">
+          <path d="M2 8 H 36 M28 2 L 38 8 L 28 14"
+            stroke="currentColor" strokeWidth="2.6"
             strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </span>
