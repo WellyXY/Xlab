@@ -51,17 +51,9 @@ function ScreenLanding({ onStart }) {
             </div>
           </div>
 
-          {/* Hero collage */}
+          {/* Hero process: driver + ref → result */}
           <div className="tw-hero-collage">
-            <div style={{ position: 'absolute', top: 20, left: 24, width: 200, transform: 'rotate(-6deg)' }}>
-              <TrendCard seed={0} name="Coquette dance" posts="2.4k posts" badge="NEW" video="src/videos/coquette-dance.mp4" />
-            </div>
-            <div style={{ position: 'absolute', top: 8, right: 0, width: 230, transform: 'rotate(4deg)' }}>
-              <TrendCard seed={2} name="Slow-mo flip" posts="4.1k posts" video="src/videos/slow-mo-flip.mp4" />
-            </div>
-            <div style={{ position: 'absolute', bottom: 0, left: 80, width: 220, transform: 'rotate(2deg)' }}>
-              <TrendCard seed={5} name="GRWM" posts="3.6k posts" video="src/videos/grwm.mp4" />
-            </div>
+            <HeroProcess />
           </div>
         </div>
       </Stage>

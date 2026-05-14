@@ -188,4 +188,67 @@ function Portrait({ size = 240, radius = 20 }) {
   );
 }
 
-Object.assign(window, { TrendCard, TopNav, Stage, StepRow, Portrait });
+// ─────────────────────────────────────────────────────────────
+// HeroProcess — driver video + ref photo → generated result
+// ─────────────────────────────────────────────────────────────
+function HeroProcess() {
+  const driverRef = useRef(null);
+  const resultRef = useRef(null);
+  const wrapRef = useRef(null);
+
+  useEffect(() => {
+    if (!wrapRef.current) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      const els = [driverRef.current, resultRef.current].filter(Boolean);
+      if (entry.isIntersecting) {
+        els.forEach((el) => el.play().catch(() => {}));
+      } else {
+        els.forEach((el) => el.pause());
+      }
+    }, { threshold: 0.3 });
+    obs.observe(wrapRef.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapRef} className="tw-hero-process">
+      <div className="tw-hero-inputs">
+        <div className="tw-hero-tile tw-hero-tile--driver">
+          <video
+            ref={driverRef}
+            className="tw-video"
+            src="src/videos/hero-driver.mp4"
+            muted loop playsInline preload="metadata"
+          />
+          <span className="tw-hero-label">Trend video</span>
+        </div>
+        <span className="tw-hero-plus" aria-hidden>+</span>
+        <div className="tw-hero-tile tw-hero-tile--ref">
+          <img className="tw-hero-img" src="src/videos/hero-ref.jpg" alt="Your reference" />
+          <span className="tw-hero-label">Your photo</span>
+        </div>
+      </div>
+
+      <div className="tw-hero-arrow" aria-hidden>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <path d="M6 20 L31 20 M24 12 L32 20 L24 28"
+            stroke="currentColor" strokeWidth="2.6"
+            strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+
+      <div className="tw-hero-tile tw-hero-tile--result">
+        <video
+          ref={resultRef}
+          className="tw-video"
+          src="src/videos/hero-result.mp4"
+          muted loop playsInline preload="metadata"
+        />
+        <div className="tw-hero-shine" aria-hidden />
+        <span className="tw-hero-label tw-hero-label--accent">You, in the trend</span>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { TrendCard, TopNav, Stage, StepRow, Portrait, HeroProcess });
