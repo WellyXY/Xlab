@@ -213,8 +213,8 @@
 
 .tw-hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 72px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
   align-items: center;
   padding: 64px 0 88px;
 }
@@ -227,127 +227,126 @@
   .tw-hero-collage { height: auto; max-width: 420px; margin: 0 auto; }
 }
 
-/* Hero process: driver + ref → result */
+/* Hero process: driver + ref → result, collage layout */
 .tw-hero-process {
   position: relative;
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template-columns: minmax(130px, 1fr) auto minmax(180px, 1.55fr);
-  gap: 18px;
-  align-items: center;
 }
-.tw-hero-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-.tw-hero-tile {
-  position: relative;
+.tw-hero-card {
+  position: absolute;
   overflow: hidden;
-  border-radius: 18px;
-  background: var(--surface-2);
-  box-shadow: 0 8px 22px rgba(40,30,20,0.10);
-  width: 100%;
-  animation: tw-rise 0.5s both;
-}
-.tw-hero-tile--driver { aspect-ratio: 9 / 16; max-width: 170px; animation-delay: 0.05s; }
-.tw-hero-tile--ref    { aspect-ratio: 4 / 5;  max-width: 130px; animation-delay: 0.18s; }
-.tw-hero-tile--result {
-  aspect-ratio: 9 / 16;
   border-radius: 22px;
-  box-shadow: 0 18px 44px rgba(217,102,102,0.22), 0 0 0 1px var(--accent-soft);
-  max-height: 540px;
-  margin-left: auto;
+  background: var(--surface-2);
+  box-shadow: 0 14px 36px rgba(40,30,20,0.13), 0 1px 3px rgba(40,30,20,0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  animation: tw-rise 0.55s both;
+}
+.tw-hero-card:hover {
+  transform: scale(1.025) rotate(var(--rot, 0deg)) !important;
+  z-index: 10;
+}
+.tw-hero-card--driver {
+  --rot: -5deg;
+  top: 0;
+  left: 0;
+  width: 32%;
+  aspect-ratio: 9 / 16;
+  transform: rotate(var(--rot));
+  z-index: 1;
+  animation-delay: 0.05s;
+}
+.tw-hero-card--ref {
+  --rot: 4deg;
+  bottom: 0;
+  left: 5%;
+  width: 44%;
+  aspect-ratio: 4 / 5;
+  transform: rotate(var(--rot));
+  z-index: 2;
+  animation-delay: 0.18s;
+}
+.tw-hero-card--result {
+  --rot: 2deg;
+  top: 18px;
+  right: 0;
+  width: 54%;
+  aspect-ratio: 9 / 16;
+  transform: rotate(var(--rot));
+  z-index: 3;
+  border-radius: 26px;
+  box-shadow:
+    0 24px 56px rgba(217,102,102,0.22),
+    0 0 0 1px var(--accent-soft),
+    0 1px 3px rgba(40,30,20,0.08);
   animation-delay: 0.32s;
 }
 .tw-hero-img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: 50% 35%;
   display: block;
   border-radius: inherit;
 }
-.tw-hero-plus {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text-faint);
-  line-height: 1;
-  margin: -2px 0;
-}
-.tw-hero-arrow {
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: tw-arrow-pulse 2.4s ease-in-out infinite;
-}
 .tw-hero-shine {
   position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.35) 50%, transparent 65%);
+  background: linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.32) 50%, transparent 64%);
   background-size: 220% 100%;
-  animation: tw-shimmer 3.6s ease-in-out infinite;
+  animation: tw-shimmer 3.8s ease-in-out infinite;
   mix-blend-mode: overlay;
-  opacity: 0.7;
+  opacity: 0.6;
 }
-.tw-hero-label {
+.tw-hero-tag {
   position: absolute;
-  left: 8px; bottom: 8px;
+  bottom: 12px; left: 12px;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.94);
   color: var(--text);
-  padding: 4px 10px;
+  padding: 5px 11px;
   border-radius: 999px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   pointer-events: none;
   white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
-.tw-hero-label--accent {
+.tw-hero-tag--accent {
   background: var(--accent);
   color: var(--on-accent);
-}
-
-@keyframes tw-arrow-pulse {
-  0%, 100% { transform: translateX(0); opacity: 0.85; }
-  50%      { transform: translateX(4px); opacity: 1; }
+  box-shadow: 0 4px 14px rgba(217,102,102,0.35);
 }
 
 @media (max-width: 900px) {
   .tw-hero-process {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 14px;
-    padding: 8px 0;
-  }
-  .tw-hero-inputs {
-    flex-direction: row;
-    justify-content: center;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    grid-template-rows: auto auto;
     gap: 12px;
+    padding: 6px 0;
   }
-  .tw-hero-arrow { transform: rotate(90deg); }
-  .tw-hero-arrow svg { width: 32px; height: 32px; }
-  .tw-hero-tile--driver { max-width: 130px; }
-  .tw-hero-tile--ref    { max-width: 110px; }
-  .tw-hero-tile--result { max-width: 240px; margin: 0 auto; }
-  .tw-hero-label { display: none; }
-  .tw-hero-tile--result .tw-hero-label {
-    display: inline-block;
-    font-size: 10px;
-    padding: 3px 9px;
-    left: 8px;
-    bottom: 8px;
-    letter-spacing: 0.05em;
+  .tw-hero-card {
+    position: relative;
+    transform: none !important;
+    width: 100% !important;
+    top: auto; left: auto; right: auto; bottom: auto;
+    animation: none;
   }
-  .tw-hero-plus { font-size: 22px; }
-  @keyframes tw-arrow-pulse {
-    0%, 100% { transform: rotate(90deg) translateX(0); opacity: 0.85; }
-    50%      { transform: rotate(90deg) translateX(4px); opacity: 1; }
+  .tw-hero-card:hover { transform: none !important; }
+  .tw-hero-card--driver { grid-column: 1; grid-row: 1; aspect-ratio: 9 / 16; align-self: end; }
+  .tw-hero-card--ref    { grid-column: 2; grid-row: 1; aspect-ratio: 4 / 5; align-self: end; }
+  .tw-hero-card--result {
+    grid-column: 1 / -1; grid-row: 2;
+    aspect-ratio: 9 / 16;
+    width: 240px !important;
+    margin: 4px auto 0;
   }
+  .tw-hero-tag { font-size: 10px; padding: 3px 9px; bottom: 10px; left: 10px; letter-spacing: 0.04em; }
 }
 
 .tw-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
