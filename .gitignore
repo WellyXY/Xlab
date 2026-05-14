@@ -1,0 +1,19 @@
+# raw video downloads (renamed copies live in src/videos/)
+video file/
+
+# internal planning docs
+docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# node (in case anyone runs npm later)
+node_modules/
+
+# vercel
+.vercel

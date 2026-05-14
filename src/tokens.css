@@ -1,0 +1,390 @@
+/* Trendi — Theme tokens
+   Three aesthetic directions, switched via [data-theme] on each .trendi-screen wrapper.
+   Accent (pink/green/blue) is independent and applies in dark mode only.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bagel+Fat+One&family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* shared */
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --safe-top: 60px; /* below status bar */
+  --safe-bottom: 34px; /* above home indicator */
+}
+
+/* ───────────── DARK (default) ───────────── */
+.trendi-screen[data-theme='dark'],
+.trendi-screen:not([data-theme]) {
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+
+  --bg: #0A0A0A;
+  --bg-elev: #131313;
+  --bg-elev-2: #1c1c1c;
+  --bg-glass: rgba(20, 20, 20, 0.72);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.18);
+
+  --text: #F5F5F0;
+  --text-muted: rgba(245, 245, 240, 0.58);
+  --text-faint: rgba(245, 245, 240, 0.35);
+
+  --accent: #FF2E63;          /* pink default */
+  --accent-glow: rgba(255, 46, 99, 0.45);
+  --on-accent: #0A0A0A;
+
+  --shimmer: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.trendi-screen[data-theme='dark'][data-accent='green'] {
+  --accent: #C5FF3D;
+  --accent-glow: rgba(197, 255, 61, 0.45);
+  --on-accent: #0A0A0A;
+}
+.trendi-screen[data-theme='dark'][data-accent='blue'] {
+  --accent: #2E5BFF;
+  --accent-glow: rgba(46, 91, 255, 0.5);
+  --on-accent: #F5F5F0;
+}
+
+/* ───────────── Y2K CHROME ───────────── */
+.trendi-screen[data-theme='y2k'] {
+  --font-display: 'Bagel Fat One', 'Space Grotesk', sans-serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+
+  --bg: #f0e7ff;
+  --bg-elev: rgba(255, 255, 255, 0.55);
+  --bg-elev-2: rgba(255, 255, 255, 0.78);
+  --bg-glass: rgba(255, 255, 255, 0.35);
+  --hairline: rgba(80, 40, 120, 0.18);
+  --hairline-strong: rgba(80, 40, 120, 0.35);
+
+  --text: #1a0a3e;
+  --text-muted: rgba(26, 10, 62, 0.62);
+  --text-faint: rgba(26, 10, 62, 0.4);
+
+  --accent: #ff0099;
+  --accent-glow: rgba(255, 0, 153, 0.45);
+  --on-accent: #ffffff;
+
+  background:
+    radial-gradient(110% 70% at 80% 0%, #ffd6f0 0%, transparent 55%),
+    radial-gradient(90% 60% at 0% 100%, #c2e8ff 0%, transparent 50%),
+    linear-gradient(160deg, #e8d6ff 0%, #ffe7f5 50%, #d6f0ff 100%);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* ───────────── CLEAN GIRL ───────────── */
+.trendi-screen[data-theme='clean'] {
+  --font-display: 'Instrument Serif', 'EB Garamond', Georgia, serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+
+  --bg: #F5F0E8;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #faf6ed;
+  --bg-glass: rgba(255, 252, 246, 0.78);
+  --hairline: rgba(50, 45, 38, 0.1);
+  --hairline-strong: rgba(50, 45, 38, 0.2);
+
+  --text: #2a2724;
+  --text-muted: rgba(42, 39, 36, 0.6);
+  --text-faint: rgba(42, 39, 36, 0.4);
+
+  --accent: #7d8d6e;          /* sage */
+  --accent-glow: rgba(125, 141, 110, 0.35);
+  --on-accent: #ffffff;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* ───────────── Shared element styles ───────────── */
+.trendi-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01' on, 'cv11' on;
+}
+.trendi-screen *,
+.trendi-screen *::before,
+.trendi-screen *::after { box-sizing: border-box; }
+
+.trendi-h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.trendi-screen[data-theme='clean'] .trendi-h1 {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-size: 60px;
+  line-height: 1;
+}
+.trendi-screen[data-theme='y2k'] .trendi-h1 {
+  letter-spacing: -0.01em;
+  font-size: 52px;
+  line-height: 1;
+  background: linear-gradient(180deg, #fff 0%, #ffd1ee 50%, #b388ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 0 rgba(80,30,120,0.15);
+}
+
+.trendi-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+.trendi-screen[data-theme='clean'] .trendi-h2 {
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-size: 32px;
+}
+
+.trendi-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.trendi-mono { font-family: var(--font-mono); font-feature-settings: 'tnum' on; }
+
+/* Scrollbars hidden */
+.trendi-screen ::-webkit-scrollbar { display: none; }
+.trendi-screen * { scrollbar-width: none; }
+
+/* Logo wordmark */
+.trendi-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.trendi-logo::before {
+  content: '';
+  width: 14px; height: 14px;
+  border-radius: 4px;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  display: inline-block;
+}
+.trendi-screen[data-theme='clean'] .trendi-logo { font-weight: 400; font-size: 22px; }
+.trendi-screen[data-theme='clean'] .trendi-logo::before { border-radius: 50%; }
+
+/* Soft accent button base used everywhere */
+.trendi-btn {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  height: 56px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.18s cubic-bezier(.2,.8,.3,1), background 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.trendi-btn:active { transform: scale(0.97); }
+.trendi-btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 12px 32px var(--accent-glow);
+}
+.trendi-btn--primary:hover { box-shadow: 0 0 0 1px var(--accent), 0 16px 40px var(--accent-glow); }
+.trendi-btn--secondary {
+  background: var(--bg-elev);
+  color: var(--text);
+  border: 1px solid var(--hairline);
+}
+.trendi-btn--ghost {
+  background: transparent;
+  color: var(--text);
+}
+.trendi-btn--disabled {
+  background: var(--bg-elev);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+.trendi-screen[data-theme='clean'] .trendi-btn { font-family: var(--font-body); font-weight: 500; }
+
+/* status bar overlay (we re-build a flush one inside the device) */
+.trendi-status {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px 0;
+  font-family: -apple-system, system-ui;
+  font-weight: 590;
+  font-size: 17px;
+  z-index: 60;
+  pointer-events: none;
+  color: var(--text);
+}
+.trendi-screen[data-theme='clean'] .trendi-status { color: #1a1a1a; }
+.trendi-status .trendi-status__icons { display: flex; gap: 6px; align-items: center; }
+
+/* Home indicator color hint per theme */
+.trendi-home-hint { color: var(--text); }
+
+/* shimmer / scanning loader */
+@keyframes trendi-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes trendi-spin { to { transform: rotate(360deg); } }
+@keyframes trendi-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.96); }
+}
+@keyframes trendi-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes trendi-orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes trendi-blob {
+  0%, 100% { border-radius: 60% 40% 50% 60%; transform: translate(0, 0) rotate(0deg); }
+  33% { border-radius: 40% 60% 70% 30%; transform: translate(8%, -6%) rotate(120deg); }
+  66% { border-radius: 50% 50% 30% 70%; transform: translate(-6%, 8%) rotate(240deg); }
+}
+@keyframes trendi-marquee {
+  to { transform: translateX(-50%); }
+}
+@keyframes trendi-confetti-fall {
+  0% { transform: translateY(-20vh) rotate(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+@keyframes trendi-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes trendi-bounce-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* badge */
+.trendi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: var(--bg-elev-2);
+  color: var(--text);
+  border: 1px solid var(--hairline);
+}
+.trendi-badge--accent {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: transparent;
+}
+.trendi-badge--dot::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+  animation: trendi-pulse 1.6s ease-in-out infinite;
+}
+
+/* card */
+.trendi-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+}
+.trendi-screen[data-theme='y2k'] .trendi-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 32px rgba(80, 40, 120, 0.12);
+}
+
+/* TAB bar */
+.trendi-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg-elev);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+}
+.trendi-tabs__item {
+  flex: 1;
+  height: 36px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  letter-spacing: -0.01em;
+}
+.trendi-tabs__item--active {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.trendi-screen[data-theme='clean'] .trendi-tabs__item { font-family: var(--font-body); font-weight: 500; }
+
+/* step indicator */
+.trendi-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.trendi-step__dot {
+  width: 18px; height: 4px; border-radius: 2px;
+  background: var(--hairline-strong);
+}
+.trendi-step__dot--on { background: var(--accent); }
