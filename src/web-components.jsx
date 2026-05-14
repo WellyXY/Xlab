@@ -212,32 +212,32 @@ function HeroProcess() {
 
   return (
     <div ref={wrapRef} className="tw-hero-process">
-      <div className="tw-hero-card tw-hero-card--driver">
-        <video
-          ref={driverRef}
-          className="tw-video"
-          src="src/videos/hero-driver.mp4"
-          muted loop playsInline preload="metadata"
-        />
-        <span className="tw-hero-tag">The trend</span>
+      <div className="tw-hero-inputs">
+        <div className="tw-hero-tile tw-hero-tile--driver">
+          <video
+            ref={driverRef}
+            className="tw-video"
+            src="src/videos/hero-driver.mp4"
+            muted loop playsInline preload="metadata"
+          />
+          <span className="tw-hero-label">Trend video</span>
+        </div>
+        <span className="tw-hero-plus" aria-hidden>+</span>
+        <div className="tw-hero-tile tw-hero-tile--ref">
+          <img className="tw-hero-img" src="src/videos/hero-ref.jpg" alt="Your reference" />
+          <span className="tw-hero-label">Your photo</span>
+        </div>
       </div>
 
-      <span className="tw-hero-op tw-hero-op--plus" aria-hidden>+</span>
-
-      <div className="tw-hero-card tw-hero-card--ref">
-        <img className="tw-hero-img" src="src/videos/hero-ref.jpg" alt="My reference photo" />
-        <span className="tw-hero-tag">My photo</span>
-      </div>
-
-      <span className="tw-hero-op tw-hero-op--arrow" aria-hidden>
-        <svg width="44" height="16" viewBox="0 0 44 16" fill="none">
-          <path d="M2 8 H 36 M28 2 L 38 8 L 28 14"
+      <div className="tw-hero-arrow" aria-hidden>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <path d="M6 20 L31 20 M24 12 L32 20 L24 28"
             stroke="currentColor" strokeWidth="2.6"
             strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-      </span>
+      </div>
 
-      <div className="tw-hero-card tw-hero-card--result">
+      <div className="tw-hero-tile tw-hero-tile--result">
         <video
           ref={resultRef}
           className="tw-video"
@@ -245,12 +245,7 @@ function HeroProcess() {
           muted loop playsInline preload="metadata"
         />
         <div className="tw-hero-shine" aria-hidden />
-        <span className="tw-hero-tag tw-hero-tag--accent">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden style={{ marginRight: 5 }}>
-            <path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/>
-          </svg>
-          Me, in the trend
-        </span>
+        <span className="tw-hero-label tw-hero-label--accent">You, in the trend</span>
       </div>
     </div>
   );

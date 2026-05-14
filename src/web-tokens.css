@@ -213,8 +213,8 @@
 
 .tw-hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 72px;
   align-items: center;
   padding: 64px 0 88px;
 }
@@ -227,111 +227,127 @@
   .tw-hero-collage { height: auto; max-width: 420px; margin: 0 auto; }
 }
 
-/* Hero process: driver + ref → result, clean inline equation */
+/* Hero process: driver + ref → result */
 .tw-hero-process {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
+  position: relative;
   width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) auto minmax(180px, 1.55fr);
+  gap: 18px;
+  align-items: center;
 }
-.tw-hero-card {
-  flex: 0 0 auto;
+.tw-hero-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.tw-hero-tile {
   position: relative;
   overflow: hidden;
   border-radius: 18px;
   background: var(--surface-2);
-  box-shadow: 0 12px 30px rgba(40,30,20,0.10), 0 1px 2px rgba(40,30,20,0.04);
+  box-shadow: 0 8px 22px rgba(40,30,20,0.10);
+  width: 100%;
   animation: tw-rise 0.5s both;
 }
-.tw-hero-card--driver { width: 20%; aspect-ratio: 9 / 16; animation-delay: 0.05s; }
-.tw-hero-card--ref    { width: 28%; aspect-ratio: 4 / 5; animation-delay: 0.18s; }
-.tw-hero-card--result {
-  width: 40%;
+.tw-hero-tile--driver { aspect-ratio: 9 / 16; max-width: 170px; animation-delay: 0.05s; }
+.tw-hero-tile--ref    { aspect-ratio: 4 / 5;  max-width: 130px; animation-delay: 0.18s; }
+.tw-hero-tile--result {
   aspect-ratio: 9 / 16;
   border-radius: 22px;
-  box-shadow:
-    0 22px 52px rgba(217,102,102,0.22),
-    0 0 0 1px var(--accent-soft),
-    0 1px 3px rgba(40,30,20,0.08);
+  box-shadow: 0 18px 44px rgba(217,102,102,0.22), 0 0 0 1px var(--accent-soft);
+  max-height: 540px;
+  margin-left: auto;
   animation-delay: 0.32s;
-}
-
-/* Inline equation operators */
-.tw-hero-op {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  font-family: var(--font-display);
-  font-weight: 700;
-  pointer-events: none;
-}
-.tw-hero-op--plus { width: 32px; font-size: 30px; line-height: 1; }
-.tw-hero-op--arrow {
-  width: 44px;
-  animation: tw-arrow-pulse 2.4s ease-in-out infinite;
-}
-.tw-hero-op svg { display: block; }
-@keyframes tw-arrow-pulse {
-  0%, 100% { transform: translateX(0); }
-  50%      { transform: translateX(4px); }
 }
 .tw-hero-img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 50% 35%;
   display: block;
   border-radius: inherit;
 }
+.tw-hero-plus {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-faint);
+  line-height: 1;
+  margin: -2px 0;
+}
+.tw-hero-arrow {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: tw-arrow-pulse 2.4s ease-in-out infinite;
+}
 .tw-hero-shine {
   position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.32) 50%, transparent 64%);
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.35) 50%, transparent 65%);
   background-size: 220% 100%;
-  animation: tw-shimmer 3.8s ease-in-out infinite;
+  animation: tw-shimmer 3.6s ease-in-out infinite;
   mix-blend-mode: overlay;
-  opacity: 0.6;
+  opacity: 0.7;
 }
-.tw-hero-tag {
+.tw-hero-label {
   position: absolute;
-  bottom: 12px; left: 12px;
-  display: inline-flex;
-  align-items: center;
+  left: 8px; bottom: 8px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba(255,255,255,0.94);
+  background: rgba(255,255,255,0.92);
   color: var(--text);
-  padding: 5px 11px;
+  padding: 4px 10px;
   border-radius: 999px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   pointer-events: none;
   white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
-.tw-hero-tag--accent {
+.tw-hero-label--accent {
   background: var(--accent);
   color: var(--on-accent);
-  box-shadow: 0 4px 14px rgba(217,102,102,0.35);
+}
+
+@keyframes tw-arrow-pulse {
+  0%, 100% { transform: translateX(0); opacity: 0.85; }
+  50%      { transform: translateX(4px); opacity: 1; }
 }
 
 @media (max-width: 900px) {
   .tw-hero-process {
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 4px 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 14px;
+    padding: 8px 0;
   }
-  .tw-hero-card--driver { width: 28%; }
-  .tw-hero-card--ref    { width: 36%; }
-  .tw-hero-card--result { width: 100%; max-width: 260px; margin: 12px auto 0; }
-  .tw-hero-op--plus  { width: 22px; font-size: 22px; }
-  .tw-hero-op--arrow { width: 100%; flex-basis: 100%; margin: 6px 0 -2px; transform: rotate(90deg); }
-  .tw-hero-op--arrow svg { width: 36px; }
-  .tw-hero-tag { font-size: 10px; padding: 3px 9px; bottom: 10px; left: 10px; letter-spacing: 0.04em; }
+  .tw-hero-inputs {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+  .tw-hero-arrow { transform: rotate(90deg); }
+  .tw-hero-arrow svg { width: 32px; height: 32px; }
+  .tw-hero-tile--driver { max-width: 130px; }
+  .tw-hero-tile--ref    { max-width: 110px; }
+  .tw-hero-tile--result { max-width: 240px; margin: 0 auto; }
+  .tw-hero-label { display: none; }
+  .tw-hero-tile--result .tw-hero-label {
+    display: inline-block;
+    font-size: 10px;
+    padding: 3px 9px;
+    left: 8px;
+    bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .tw-hero-plus { font-size: 22px; }
+  @keyframes tw-arrow-pulse {
+    0%, 100% { transform: rotate(90deg) translateX(0); opacity: 0.85; }
+    50%      { transform: rotate(90deg) translateX(4px); opacity: 1; }
+  }
 }
 
 .tw-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
