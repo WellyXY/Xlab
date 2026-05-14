@@ -222,10 +222,20 @@ function HeroProcess() {
         <span className="tw-hero-tag">The trend</span>
       </div>
 
+      <span className="tw-hero-op tw-hero-op--plus" aria-hidden>+</span>
+
       <div className="tw-hero-card tw-hero-card--ref">
         <img className="tw-hero-img" src="src/videos/hero-ref.jpg" alt="My reference photo" />
         <span className="tw-hero-tag">My photo</span>
       </div>
+
+      <span className="tw-hero-op tw-hero-op--arrow" aria-hidden>
+        <svg width="36" height="14" viewBox="0 0 36 14" fill="none">
+          <path d="M2 7 H 28 M22 2 L 30 7 L 22 12"
+            stroke="currentColor" strokeWidth="2.4"
+            strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
 
       <div className="tw-hero-card tw-hero-card--result">
         <video
@@ -239,7 +249,7 @@ function HeroProcess() {
           <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden style={{ marginRight: 5 }}>
             <path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/>
           </svg>
-          My version
+          Me, in the trend
         </span>
       </div>
     </div>

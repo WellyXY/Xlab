@@ -259,8 +259,8 @@
 .tw-hero-card--ref {
   --rot: 4deg;
   bottom: 0;
-  left: 5%;
-  width: 44%;
+  left: 3%;
+  width: 40%;
   aspect-ratio: 4 / 5;
   transform: rotate(var(--rot));
   z-index: 2;
@@ -268,9 +268,9 @@
 }
 .tw-hero-card--result {
   --rot: 2deg;
-  top: 18px;
+  top: 22px;
   right: 0;
-  width: 54%;
+  width: 50%;
   aspect-ratio: 9 / 16;
   transform: rotate(var(--rot));
   z-index: 3;
@@ -280,6 +280,44 @@
     0 0 0 1px var(--accent-soft),
     0 1px 3px rgba(40,30,20,0.08);
   animation-delay: 0.32s;
+}
+
+/* Process operators: + between driver/ref, → between cluster and result */
+.tw-hero-op {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: var(--bg);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(40,30,20,0.10);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.tw-hero-op--plus {
+  top: 49%;
+  left: 24%;
+  width: 38px;
+  height: 38px;
+  font-size: 24px;
+  line-height: 1;
+  transform: translate(-50%, -50%) rotate(-4deg);
+  border: 1.5px solid var(--accent-soft);
+}
+.tw-hero-op--arrow {
+  top: 50%;
+  left: 47%;
+  padding: 8px 12px;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--accent-soft);
+  animation: tw-arrow-pulse 2.4s ease-in-out infinite;
+}
+@keyframes tw-arrow-pulse {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50%      { transform: translate(calc(-50% + 4px), -50%); }
 }
 .tw-hero-img {
   width: 100%; height: 100%;
@@ -347,6 +385,7 @@
     margin: 4px auto 0;
   }
   .tw-hero-tag { font-size: 10px; padding: 3px 9px; bottom: 10px; left: 10px; letter-spacing: 0.04em; }
+  .tw-hero-op { display: none; }
 }
 
 .tw-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
