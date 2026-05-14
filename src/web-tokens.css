@@ -152,6 +152,7 @@
   display: block;
   background: transparent;
   pointer-events: none;
+  border-radius: inherit;
 }
 
 /* Badge */
