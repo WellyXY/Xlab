@@ -40,11 +40,13 @@ function TrendCard({ seed = 0, name, posts, badge, selected, onClick, video, siz
     <div ref={cardRef} onClick={onClick} style={{
       position: 'relative', aspectRatio: '9 / 14', borderRadius: 18, overflow: 'hidden',
       cursor: onClick ? 'pointer' : 'default', flexShrink: 0,
-      background: video ? '#000' : `linear-gradient(${angle}deg, ${p[0]} 0%, ${p[2]} 100%)`,
-      border: selected ? '2px solid var(--accent)' : '1px solid var(--hairline)',
+      background: video ? 'var(--surface-2)' : `linear-gradient(${angle}deg, ${p[0]} 0%, ${p[2]} 100%)`,
+      border: selected ? '2px solid var(--accent)' : (video ? 'none' : '1px solid var(--hairline)'),
       boxShadow: selected
-        ? '0 0 0 4px var(--accent-soft), 0 8px 24px rgba(40,30,20,0.08)'
-        : '0 1px 2px rgba(40,30,20,0.04), 0 8px 24px rgba(40,30,20,0.05)',
+        ? '0 0 0 4px var(--accent-soft), 0 10px 28px rgba(40,30,20,0.10)'
+        : (video
+            ? '0 8px 22px rgba(40,30,20,0.07)'
+            : '0 1px 2px rgba(40,30,20,0.04), 0 8px 24px rgba(40,30,20,0.05)'),
       transition: 'transform .2s, box-shadow .2s',
       transform: selected ? 'translateY(-2px)' : 'translateY(0)',
     }}>
@@ -76,8 +78,8 @@ function TrendCard({ seed = 0, name, posts, badge, selected, onClick, video, siz
 
       {video && (name || posts) && (
         <div style={{
-          position: 'absolute', left: 0, right: 0, bottom: 0, height: '45%',
-          background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.55) 100%)',
+          position: 'absolute', left: 0, right: 0, bottom: 0, height: '32%',
+          background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.45) 75%, rgba(0,0,0,0.55) 100%)',
           pointerEvents: 'none',
         }} />
       )}
